@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEE'S KITCHEN - Admin Dashboard</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="header-content">
+                <h1><i class="fas fa-utensils"></i> MEE'S KITCHEN Admin</h1>
+                <div class="header-actions">
+                    <a href="/" class="view-site-btn" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> View Main Site
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="dashboard-grid">
+                <!-- Add Food Item Section -->
+                <section class="admin-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-plus-circle"></i> Add New Food Item</h2>
+                    </div>
+                    <div class="card-content">
+                        <form id="addFoodForm" enctype="multipart/form-data">
+                            <input type="hidden" id="editItemId" name="editId">
+                            <div class="form-group">
+                                <label for="foodName">Food Name *</label>
+                                <input type="text" id="foodName" name="name" required placeholder="Enter food name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="foodDescription">Description</label>
+                                <textarea id="foodDescription" name="description" rows="4" placeholder="Describe your delicious food item..."></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="foodCategory">Category *</label>
+                                    <select id="foodCategory" name="category" required>
+                                        <option value="">Select Category</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="foodPrice">Price ($)</label>
+                                    <input type="number" id="foodPrice" name="price" step="0.01" min="0" placeholder="0.00">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="foodImage">Food Image <span id="imageRequired">*</span></label>
+                                <div class="file-upload-area">
+                                    <input type="file" id="foodImage" name="image" accept="image/*">
+                                    <div class="file-upload-text">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Click to upload or drag and drop</span>
+                                        <small>PNG, JPG, JPEG up to 10MB</small>
+                                    </div>
+                                    <div id="imagePreview" class="image-preview"></div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="submit-btn" id="submitItemBtn">
+                                <i class="fas fa-save"></i> Add Food Item
+                            </button>
+                            <button type="button" class="submit-btn secondary" id="cancelEditBtn" style="display: none;">
+                                <i class="fas fa-times"></i> Cancel Edit
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Add Category Section -->
+                <section class="admin-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-tags"></i> Add New Category</h2>
+                    </div>
+                    <div class="card-content">
+                        <form id="addCategoryForm">
+                            <input type="hidden" id="editCategoryId" name="editId">
+                            <div class="form-group">
+                                <label for="categoryName">Category Name *</label>
+                                <input type="text" id="categoryName" name="name" required placeholder="Enter category name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="categoryDescription">Description</label>
+                                <textarea id="categoryDescription" name="description" rows="3" placeholder="Describe this category..."></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn secondary" id="submitCategoryBtn">
+                                <i class="fas fa-plus"></i> Add Category
+                            </button>
+                            <button type="button" class="submit-btn" id="cancelCategoryEditBtn" style="display: none;">
+                                <i class="fas fa-times"></i> Cancel Edit
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Manage Food Items Section -->
+                <section class="admin-card full-width">
+                    <div class="card-header">
+                        <h2><i class="fas fa-list"></i> Manage Food Items</h2>
+                        <div style="display: flex; gap: 1rem;">
+                            <button id="clearSampleData" class="refresh-btn" style="background: rgba(231, 76, 60, 0.2); color: #e74c3c;" title="Clear Sample Data">
+                                <i class="fas fa-trash-alt"></i> Clear Samples
+                            </button>
+                            <button id="refreshItems" class="refresh-btn">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div id="foodItemsList" class="items-grid">
+                            <!-- Food items will be loaded here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Categories List Section -->
+                <section class="admin-card full-width">
+                    <div class="card-header">
+                        <h2><i class="fas fa-folder"></i> Categories</h2>
+                        <button id="refreshCategories" class="refresh-btn">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <div id="categoriesList" class="categories-grid">
+                            <!-- Categories will be loaded here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Information Section -->
+                <section class="admin-card full-width">
+                    <div class="card-header">
+                        <h2><i class="fas fa-address-book"></i> Contact Information</h2>
+                    </div>
+                    <div class="card-content">
+                        <form id="contactInfoForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactPhone">Phone Number</label>
+                                    <input type="tel" id="contactPhone" name="phone" placeholder="e.g., +1 (555) 123-4567">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Email Address</label>
+                                    <input type="email" id="contactEmail" name="email" placeholder="e.g., hello@meeskitchen.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactLocation">Location/Address</label>
+                                <input type="text" id="contactLocation" name="location" placeholder="e.g., 123 Food Street, Flavor City">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactHours">Business Hours</label>
+                                <input type="text" id="contactHours" name="hours" placeholder="e.g., Mon-Sun: 9:00 AM - 9:00 PM">
+                            </div>
+                            
+                            <h3 style="margin: 2rem 0 1rem 0; color: #2c3e50; border-bottom: 2px solid #e74c3c; padding-bottom: 0.5rem;">
+                                <i class="fab fa-facebook"></i> Social Media Links
+                            </h3>
+                            <p style="color: #666; margin-bottom: 1.5rem; font-size: 0.9rem;">
+                                Leave blank to hide the social media icon on your website
+                            </p>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="facebookUrl">
+                                        <i class="fab fa-facebook" style="color: #1877f2;"></i> Facebook URL
+                                    </label>
+                                    <input type="url" id="facebookUrl" name="facebook_url" placeholder="https://facebook.com/yourpage">
+                                </div>
+                                <div class="form-group">
+                                    <label for="instagramUrl">
+                                        <i class="fab fa-instagram" style="color: #e4405f;"></i> Instagram URL
+                                    </label>
+                                    <input type="url" id="instagramUrl" name="instagram_url" placeholder="https://instagram.com/yourpage">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="twitterUrl">
+                                    <i class="fab fa-twitter" style="color: #1da1f2;"></i> Twitter URL
+                                </label>
+                                <input type="url" id="twitterUrl" name="twitter_url" placeholder="https://twitter.com/yourpage">
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-save"></i> Update Contact & Social Media
+                            </button>
+                        </form>
+                        <div class="contact-preview">
+                            <h3>Preview (How it appears on main website):</h3>
+                            <div id="contactPreview" class="contact-preview-content">
+                                <!-- Contact preview will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div id="messageContainer"></div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

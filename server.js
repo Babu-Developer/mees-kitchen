@@ -51,7 +51,8 @@ const dbConfig = {
   port: process.env.DB_PORT || 3306,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
+  multipleStatements: true
 };
 
 // Sample data for when database is not connected
@@ -152,9 +153,6 @@ async function initializeDatabase() {
   try {
     const connection = await pool.getConnection();
     
-    // First, ensure we're using the correct database
-    await connection.execute(`USE ${process.env.DB_NAME}`);
-    
     // Create mees_food_items table (separate from other projects)
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS mees_food_items (
@@ -168,10 +166,7 @@ async function initializeDatabase() {
         is_available BOOLEAN DEFAULT true,
         is_sample BOOLEAN DEFAULT false,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        INDEX idx_category (category),
-        INDEX idx_available (is_available),
-        INDEX idx_sample (is_sample)
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
       )
     `);
 

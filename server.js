@@ -12,12 +12,28 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'https://your-netlify-app.netlify.app',
-    'https://mees-kitchen.netlify.app',
-    'https://mees-kitchen-admin.netlify.app'
-  ],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Allow localhost for development
+    if (origin.includes('localhost')) return callback(null, true);
+    
+    // Allow any Netlify app
+    if (origin.includes('.netlify.app')) return callback(null, true);
+    
+    // Allow specific domains
+    const allowedOrigins = [
+      'https://mees-kitchen.netlify.app',
+      'https://mees-kitchen-admin.netlify.app'
+    ];
+    
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    
+    return callback(new Error('Not allowed by CORS'));
+  },
   credentials: true
 }));
 app.use(express.json());

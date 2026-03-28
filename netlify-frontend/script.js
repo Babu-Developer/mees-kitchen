@@ -26,10 +26,16 @@ function setupEventListeners() {
         navMenu.classList.toggle('active');
     });
 
-    // Smooth scrolling
+    // Smooth scrolling with mobile menu auto-close
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
+            
+            // Close mobile menu when navigation link is clicked
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            }
+            
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({
@@ -38,6 +44,20 @@ function setupEventListeners() {
                 });
             }
         });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            navMenu.classList.remove('active');
+        }
+    });
+
+    // Close mobile menu on window resize (when switching to desktop)
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            navMenu.classList.remove('active');
+        }
     });
 }
 

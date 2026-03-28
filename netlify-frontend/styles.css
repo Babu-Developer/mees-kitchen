@@ -636,12 +636,15 @@ body {
     .hero {
         flex-direction: column;
         text-align: center;
-        padding: 100px 20px 60px;
+        padding: 140px 20px 60px;
         gap: 2rem;
+        min-height: calc(100vh - 80px);
     }
     
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
     }
     
     .hero-content p {
@@ -771,5 +774,39 @@ body {
     
     .logo span {
         font-size: 0.8rem;
+    }
+}
+/* Extra small screens */
+@media (max-width: 480px) {
+    .hero {
+        padding: 120px 15px 40px;
+        min-height: calc(100vh - 60px);
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
+        line-height: 1.3;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .cta-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo span {
+        font-size: 0.8rem;
+    }
+    
+    .container {
+        padding: 0 15px;
     }
 }

@@ -79,7 +79,7 @@ const sampleFoodItems = [
     name: "Chicken Biryani",
     description: "Aromatic basmati rice cooked with tender chicken and traditional spices",
     category: "Main Course",
-    price: 15.99,
+    price: 299,
     image_url: "https://images.unsplash.com/photo-1563379091339-03246963d96c?w=800&h=600&fit=crop",
     is_available: true
   },
@@ -88,7 +88,7 @@ const sampleFoodItems = [
     name: "Samosas",
     description: "Crispy pastry filled with spiced potatoes and peas",
     category: "Appetizers",
-    price: 6.99,
+    price: 149,
     image_url: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&h=600&fit=crop",
     is_available: true
   },
@@ -97,7 +97,7 @@ const sampleFoodItems = [
     name: "Gulab Jamun",
     description: "Soft milk dumplings in sweet cardamom syrup",
     category: "Desserts",
-    price: 4.99,
+    price: 99,
     image_url: "https://images.unsplash.com/photo-1571167530149-c72f2b3d9f95?w=800&h=600&fit=crop",
     is_available: true
   },
@@ -106,7 +106,7 @@ const sampleFoodItems = [
     name: "Masala Chai",
     description: "Traditional spiced tea with milk and aromatic spices",
     category: "Beverages",
-    price: 3.99,
+    price: 79,
     image_url: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=800&h=600&fit=crop",
     is_available: true
   },
@@ -115,7 +115,7 @@ const sampleFoodItems = [
     name: "Butter Chicken",
     description: "Creamy tomato-based curry with tender chicken pieces",
     category: "Main Course",
-    price: 16.99,
+    price: 329,
     image_url: "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=800&h=600&fit=crop",
     is_available: true
   },
@@ -124,7 +124,7 @@ const sampleFoodItems = [
     name: "Pakoras",
     description: "Crispy fritters made with vegetables and chickpea flour",
     category: "Snacks",
-    price: 7.99,
+    price: 159,
     image_url: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&h=600&fit=crop",
     is_available: true
   }
@@ -287,11 +287,11 @@ async function insertSampleDataIfNeeded(connection) {
     const [foodRows] = await connection.query('SELECT COUNT(*) as count FROM mees_food_items');
     if (foodRows[0].count === 0) {
       const sampleItems = [
-        ['Chicken Biryani', 'Aromatic basmati rice cooked with tender chicken and traditional spices', 'Main Course', 15.99, 'https://images.unsplash.com/photo-1563379091339-03246963d96c?w=800&h=600&fit=crop', true, true],
-        ['Samosas', 'Crispy pastry filled with spiced potatoes and peas', 'Appetizers', 6.99, 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&h=600&fit=crop', true, true],
-        ['Gulab Jamun', 'Soft milk dumplings in sweet cardamom syrup', 'Desserts', 4.99, 'https://images.unsplash.com/photo-1571167530149-c72f2b3d9f95?w=800&h=600&fit=crop', true, true],
-        ['Masala Chai', 'Traditional spiced tea with milk and aromatic spices', 'Beverages', 3.99, 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=800&h=600&fit=crop', true, true],
-        ['Pakoras', 'Crispy fritters made with vegetables and chickpea flour', 'Snacks', 7.99, 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&h=600&fit=crop', true, true]
+        ['Chicken Biryani', 'Aromatic basmati rice cooked with tender chicken and traditional spices', 'Main Course', 299, 'https://images.unsplash.com/photo-1563379091339-03246963d96c?w=800&h=600&fit=crop', true, true],
+        ['Samosas', 'Crispy pastry filled with spiced potatoes and peas', 'Appetizers', 149, 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&h=600&fit=crop', true, true],
+        ['Gulab Jamun', 'Soft milk dumplings in sweet cardamom syrup', 'Desserts', 99, 'https://images.unsplash.com/photo-1571167530149-c72f2b3d9f95?w=800&h=600&fit=crop', true, true],
+        ['Masala Chai', 'Traditional spiced tea with milk and aromatic spices', 'Beverages', 79, 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=800&h=600&fit=crop', true, true],
+        ['Pakoras', 'Crispy fritters made with vegetables and chickpea flour', 'Snacks', 159, 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&h=600&fit=crop', true, true]
       ];
       
       for (const item of sampleItems) {

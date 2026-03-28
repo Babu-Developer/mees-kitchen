@@ -80,7 +80,7 @@ function displayFoodItems(items) {
                 <h3>${item.name}</h3>
                 <p>${item.description || 'Delicious homemade food prepared with fresh ingredients.'}</p>
                 <div class="menu-item-footer">
-                    ${item.price ? `<span class="price">$${parseFloat(item.price).toFixed(2)}</span>` : ''}
+                    ${item.price ? `<span class="price">₹${parseFloat(item.price).toFixed(2)}</span>` : ''}
                     ${item.category ? `<span class="category-tag">${item.category}</span>` : ''}
                 </div>
             </div>

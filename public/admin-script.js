@@ -1,3 +1,6 @@
+// API Base URL - Update this with your Render backend URL
+const API_BASE_URL = 'https://mees-kitchen-backend.onrender.com';
+
 // Global variables
 let categories = [];
 let foodItems = [];
@@ -199,7 +202,7 @@ function displayFoodItems() {
                 <h4>${item.name}</h4>
                 <p>${item.description || 'No description provided'}</p>
                 <div class="food-item-meta">
-                    ${item.price ? `<span class="food-price">$${parseFloat(item.price).toFixed(2)}</span>` : '<span class="food-price">Price not set</span>'}
+                    ${item.price ? `<span class="food-price">₹${parseFloat(item.price).toFixed(2)}</span>` : '<span class="food-price">Price not set</span>'}
                     ${item.category ? `<span class="food-category">${item.category}</span>` : '<span class="food-category">No category</span>'}
                 </div>
                 <div class="action-buttons">

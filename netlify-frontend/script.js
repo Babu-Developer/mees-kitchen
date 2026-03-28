@@ -1,5 +1,5 @@
 // API Base URL - Update this with your Render backend URL
-const API_BASE_URL = 'https://your-backend-app.onrender.com';
+const API_BASE_URL = 'https://mees-kitchen-backend.onrender.com';
 
 // Global variables
 let foodItems = [];

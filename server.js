@@ -152,6 +152,9 @@ async function initializeDatabase() {
   try {
     const connection = await pool.getConnection();
     
+    // First, ensure we're using the correct database
+    await connection.execute(`USE ${process.env.DB_NAME}`);
+    
     // Create mees_food_items table (separate from other projects)
     await connection.execute(`
       CREATE TABLE IF NOT EXISTS mees_food_items (

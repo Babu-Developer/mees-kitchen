@@ -1,5 +1,5 @@
 // API Base URL - Update this with your Render backend URL
-const API_BASE_URL = 'https://your-backend-app.onrender.com';
+const API_BASE_URL = 'https://mees-kitchen-backend.onrender.com';
 
 // Global variables
 let categories = [];
@@ -202,7 +202,7 @@ function displayFoodItems() {
                 <h4>${item.name}</h4>
                 <p>${item.description || 'No description provided'}</p>
                 <div class="food-item-meta">
-                    ${item.price ? `<span class="food-price">$${parseFloat(item.price).toFixed(2)}</span>` : '<span class="food-price">Price not set</span>'}
+                    ${item.price ? `<span class="food-price">${parseFloat(item.price).toFixed(2)}</span>` : '<span class="food-price">Price not set</span>'}
                     ${item.category ? `<span class="food-category">${item.category}</span>` : '<span class="food-category">No category</span>'}
                 </div>
                 <div class="action-buttons">
@@ -243,7 +243,7 @@ async function handleAddFood(e) {
             throw new Error('Please select an image for the food item');
         }
         
-        const url = isEditingItem ? `/api/food-items/${editId}` : '/api/food-items';
+        const url = isEditingItem ? `${API_BASE_URL}/api/food-items/${editId}` : `${API_BASE_URL}/api/food-items`;
         const method = isEditingItem ? 'PUT' : 'POST';
         
         const response = await fetch(url, {
@@ -301,7 +301,7 @@ async function handleAddCategory(e) {
             throw new Error('Category name is required');
         }
         
-        const url = isEditingCategory ? `/api/categories/${editId}` : '/api/categories';
+        const url = isEditingCategory ? `${API_BASE_URL}/api/categories/${editId}` : `${API_BASE_URL}/api/categories`;
         const method = isEditingCategory ? 'PUT' : 'POST';
         
         const response = await fetch(url, {
@@ -343,7 +343,7 @@ async function deleteFood(id) {
     }
     
     try {
-        const response = await fetch(`/api/food-items/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/food-items/${id}`, {
             method: 'DELETE'
         });
         
@@ -478,31 +478,6 @@ function cancelItemEdit() {
     imageInput.setAttribute('required', 'required');
 }
 
-// Delete food item
-async function deleteFood(id) {
-    if (!confirm('Are you sure you want to delete this food item? This action cannot be undone.')) {
-        return;
-    }
-    
-    try {
-        const response = await fetch(`/api/food-items/${id}`, {
-            method: 'DELETE'
-        });
-        
-        const result = await response.json();
-        
-        if (response.ok) {
-            showMessage('Food item deleted successfully', 'success');
-            loadFoodItems(); // Refresh the list
-        } else {
-            throw new Error(result.error || 'Failed to delete food item');
-        }
-    } catch (error) {
-        console.error('Error deleting food item:', error);
-        showMessage(error.message, 'error');
-    }
-}
-
 // Edit category
 async function editCategory(id) {
     try {
@@ -550,7 +525,7 @@ async function deleteCategory(id) {
     }
     
     try {
-        const response = await fetch(`/api/categories/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/categories/${id}`, {
             method: 'DELETE'
         });
         
@@ -571,7 +546,7 @@ async function deleteCategory(id) {
 // Load contact information
 async function loadContactInfo() {
     try {
-        const response = await fetch('/api/contact-info');
+        const response = await fetch(`${API_BASE_URL}/api/contact-info`);
         if (response.ok) {
             const contactInfo = await response.json();
             
@@ -614,7 +589,7 @@ async function handleContactInfo(e) {
             twitter_url: formData.get('twitter_url')
         };
         
-        const response = await fetch('/api/contact-info', {
+        const response = await fetch(`${API_BASE_URL}/api/contact-info`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -711,6 +686,7 @@ function updateContactPreview() {
     
     preview.innerHTML = previewHTML;
 }
+
 // Clear sample data
 async function clearSampleData() {
     if (!confirm('Are you sure you want to clear all sample data? This will remove the demo food items and show only your real items.')) {
@@ -718,7 +694,7 @@ async function clearSampleData() {
     }
     
     try {
-        const response = await fetch('/api/sample-data', {
+        const response = await fetch(`${API_BASE_URL}/api/sample-data`, {
             method: 'DELETE'
         });
         

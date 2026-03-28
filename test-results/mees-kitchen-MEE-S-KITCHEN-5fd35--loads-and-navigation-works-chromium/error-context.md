@@ -1,0 +1,116 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - heading "MEE'S KITCHEN" [level=1] [ref=e6]
+          - generic [ref=e7]: Delicious Homemade Food
+        - list [ref=e8]:
+          - listitem [ref=e9]:
+            - link "Home" [ref=e10] [cursor=pointer]:
+              - /url: "#home"
+          - listitem [ref=e11]:
+            - link "Menu" [ref=e12] [cursor=pointer]:
+              - /url: "#menu"
+          - listitem [ref=e13]:
+            - link "About" [ref=e14] [cursor=pointer]:
+              - /url: "#about"
+          - listitem [ref=e15]:
+            - link "Contact" [ref=e16] [cursor=pointer]:
+              - /url: "#contact"
+  - generic [ref=e17]:
+    - generic [ref=e18]:
+      - heading "Welcome to MEE'S KITCHEN" [level=1] [ref=e19]
+      - paragraph [ref=e20]: Experience the taste of authentic homemade food prepared with love and fresh ingredients
+      - link "Explore Our Menu" [ref=e21] [cursor=pointer]:
+        - /url: "#menu"
+    - img "Delicious Food" [ref=e23]
+  - generic [ref=e25]:
+    - heading "Our Delicious Menu" [level=2] [ref=e26]
+    - button "All Items" [ref=e28] [cursor=pointer]
+  - generic [ref=e31]:
+    - generic [ref=e32]:
+      - heading "About MEE'S KITCHEN" [level=2] [ref=e33]
+      - paragraph [ref=e34]: At MEE'S KITCHEN, we believe that great food brings people together. Our passion for cooking started in our family kitchen, where traditional recipes were passed down through generations.
+      - paragraph [ref=e35]: We use only the freshest ingredients and time-honored cooking techniques to create dishes that not only taste amazing but also tell a story of love, tradition, and culinary excellence.
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]: 
+          - generic [ref=e39]: Fresh Ingredients
+        - generic [ref=e40]:
+          - generic [ref=e41]: 
+          - generic [ref=e42]: Made with Love
+        - generic [ref=e43]:
+          - generic [ref=e44]: 
+          - generic [ref=e45]: Quick Service
+    - img "Kitchen" [ref=e47]
+  - generic [ref=e49]:
+    - heading "Get In Touch" [level=2] [ref=e50]
+    - generic [ref=e51]:
+      - generic [ref=e52]:
+        - generic [ref=e53]:
+          - generic [ref=e54]: 
+          - generic [ref=e55]:
+            - heading "Phone" [level=3] [ref=e56]
+            - paragraph [ref=e57]: +1 (555) 123-4567
+        - generic [ref=e58]:
+          - generic [ref=e59]: 
+          - generic [ref=e60]:
+            - heading "Email" [level=3] [ref=e61]
+            - paragraph [ref=e62]: hello@meeskitchen.com
+        - generic [ref=e63]:
+          - generic [ref=e64]: 
+          - generic [ref=e65]:
+            - heading "Location" [level=3] [ref=e66]
+            - paragraph [ref=e67]: 123 Food Street, Flavor City
+        - generic [ref=e68]:
+          - generic [ref=e69]: 
+          - generic [ref=e70]:
+            - heading "Hours" [level=3] [ref=e71]
+            - paragraph [ref=e72]: "Mon-Sun: 9:00 AM - 9:00 PM"
+      - generic [ref=e74]:
+        - textbox "Your Name" [ref=e75]
+        - textbox "Your Email" [ref=e76]
+        - textbox "Your Message" [ref=e77]
+        - button "Send Message" [ref=e78] [cursor=pointer]
+  - contentinfo [ref=e79]:
+    - generic [ref=e80]:
+      - generic [ref=e81]:
+        - generic [ref=e82]:
+          - heading "MEE'S KITCHEN" [level=3] [ref=e83]
+          - paragraph [ref=e84]: Bringing you the finest homemade food with authentic flavors and fresh ingredients.
+        - generic [ref=e85]:
+          - heading "Quick Links" [level=3] [ref=e86]
+          - list [ref=e87]:
+            - listitem [ref=e88]:
+              - link "Home" [ref=e89] [cursor=pointer]:
+                - /url: "#home"
+            - listitem [ref=e90]:
+              - link "Menu" [ref=e91] [cursor=pointer]:
+                - /url: "#menu"
+            - listitem [ref=e92]:
+              - link "About" [ref=e93] [cursor=pointer]:
+                - /url: "#about"
+            - listitem [ref=e94]:
+              - link "Contact" [ref=e95] [cursor=pointer]:
+                - /url: "#contact"
+            - listitem [ref=e96]:
+              - link "Admin Portal" [ref=e97] [cursor=pointer]:
+                - /url: /admin
+        - generic [ref=e98]:
+          - heading "Follow Us" [level=3] [ref=e99]
+          - generic [ref=e100]:
+            - link "" [ref=e101] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e102]: 
+            - link "" [ref=e103] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e104]: 
+            - link "" [ref=e105] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e106]: 
+      - paragraph [ref=e108]: © 2024 MEE'S KITCHEN. All rights reserved.
+```

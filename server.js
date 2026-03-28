@@ -15,7 +15,8 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'https://your-netlify-app.netlify.app',
-    'https://mees-kitchen.netlify.app'
+    'https://mees-kitchen.netlify.app',
+    'https://mees-kitchen-admin.netlify.app'
   ],
   credentials: true
 }));

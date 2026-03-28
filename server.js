@@ -124,11 +124,21 @@ const sampleCategories = [
 
 const pool = mysql.createPool(dbConfig);
 
-// Test database connection
+// Test database connection and initialize
 async function testDatabaseConnection() {
   try {
     console.log('Testing database connection...');
+    console.log('DB Config:', {
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      database: process.env.DB_NAME,
+      port: process.env.DB_PORT
+    });
+    
     const connection = await pool.getConnection();
+    
+    // Test a simple query to ensure database is selected
+    await connection.execute('SELECT 1 as test');
     console.log('Database connection successful!');
     connection.release();
     isDatabaseConnected = true;
@@ -151,65 +161,133 @@ async function initializeDatabase() {
   }
 
   try {
-    const connection = await pool.getConnection();
-    
-    // Create mees_food_items table (separate from other projects)
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS mees_food_items (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        description TEXT,
-        category VARCHAR(100),
-        price DECIMAL(10, 2),
-        image_url VARCHAR(500),
-        image_public_id VARCHAR(255),
-        is_available BOOLEAN DEFAULT true,
-        is_sample BOOLEAN DEFAULT false,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      )
-    `);
+    // Create tables with simpler approach
+    const createTables = async () => {
+      const connection = await pool.getConnection();
+      
+      try {
+        // Create mees_food_items table
+        const createFoodItemsTable = `
+          CREATE TABLE IF NOT EXISTS mees_food_items (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(255) NOT NULL,
+            description TEXT,
+            category VARCHAR(100),
+            price DECIMAL(10, 2),
+            image_url VARCHAR(500),
+            image_public_id VARCHAR(255),
+            is_available BOOLEAN DEFAULT true,
+            is_sample BOOLEAN DEFAULT false,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+          )
+        `;
+        
+        await connection.query(createFoodItemsTable);
+        console.log('mees_food_items table created/verified');
 
-    // Create mees_categories table (separate from other projects)
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS mees_categories (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(100) NOT NULL UNIQUE,
-        description TEXT,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `);
+        // Create mees_categories table
+        const createCategoriesTable = `
+          CREATE TABLE IF NOT EXISTS mees_categories (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(100) NOT NULL UNIQUE,
+            description TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+          )
+        `;
+        
+        await connection.query(createCategoriesTable);
+        console.log('mees_categories table created/verified');
 
-    // Create mees_contact_info table for contact details
-    await connection.execute(`
-      CREATE TABLE IF NOT EXISTS mees_contact_info (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        phone VARCHAR(50),
-        email VARCHAR(100),
-        location TEXT,
-        hours TEXT,
-        facebook_url VARCHAR(255),
-        instagram_url VARCHAR(255),
-        twitter_url VARCHAR(255),
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      )
-    `);
+        // Create mees_contact_info table
+        const createContactTable = `
+          CREATE TABLE IF NOT EXISTS mees_contact_info (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            phone VARCHAR(50),
+            email VARCHAR(100),
+            location TEXT,
+            hours TEXT,
+            facebook_url VARCHAR(255),
+            instagram_url VARCHAR(255),
+            twitter_url VARCHAR(255),
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+          )
+        `;
+        
+        await connection.query(createContactTable);
+        console.log('mees_contact_info table created/verified');
 
-    // Insert default contact info if not exists
-    const [contactExists] = await connection.execute('SELECT COUNT(*) as count FROM mees_contact_info');
-    if (contactExists[0].count === 0) {
-      await connection.execute(`
-        INSERT INTO mees_contact_info (phone, email, location, hours, facebook_url, instagram_url, twitter_url) VALUES
-        ('+1 (555) 123-4567', 'hello@meeskitchen.com', '123 Food Street, Flavor City', 'Mon-Sun: 9:00 AM - 9:00 PM', '', '', '')
-      `);
-    }
+        // Insert sample data if tables are empty
+        await insertSampleDataIfNeeded(connection);
+        
+      } finally {
+        connection.release();
+      }
+    };
 
-    connection.release();
+    await createTables();
     console.log('MEE\'S KITCHEN database tables initialized successfully');
+    
   } catch (error) {
     console.error('Database initialization error:', error.message);
     isDatabaseConnected = false;
     console.log('Server will continue running with sample data. Please configure your database credentials in .env file');
+  }
+}
+
+// Insert sample data if needed
+async function insertSampleDataIfNeeded(connection) {
+  try {
+    // Check if contact info exists
+    const [contactRows] = await connection.query('SELECT COUNT(*) as count FROM mees_contact_info');
+    if (contactRows[0].count === 0) {
+      await connection.query(`
+        INSERT INTO mees_contact_info (phone, email, location, hours, facebook_url, instagram_url, twitter_url) VALUES
+        ('+1 (555) 123-4567', 'hello@meeskitchen.com', '123 Food Street, Flavor City', 'Mon-Sun: 9:00 AM - 9:00 PM', '', '', '')
+      `);
+      console.log('Default contact info inserted');
+    }
+
+    // Check if categories exist
+    const [categoryRows] = await connection.query('SELECT COUNT(*) as count FROM mees_categories');
+    if (categoryRows[0].count === 0) {
+      const categories = [
+        ['Appetizers', 'Delicious starters to begin your meal'],
+        ['Main Course', 'Hearty and satisfying main dishes'],
+        ['Desserts', 'Sweet treats to end your meal perfectly'],
+        ['Beverages', 'Refreshing drinks and beverages'],
+        ['Snacks', 'Light bites and quick snacks'],
+        ['Specials', 'Chef special dishes and seasonal items']
+      ];
+      
+      for (const [name, description] of categories) {
+        await connection.query('INSERT INTO mees_categories (name, description) VALUES (?, ?)', [name, description]);
+      }
+      console.log('Sample categories inserted');
+    }
+
+    // Check if food items exist
+    const [foodRows] = await connection.query('SELECT COUNT(*) as count FROM mees_food_items');
+    if (foodRows[0].count === 0) {
+      const sampleItems = [
+        ['Chicken Biryani', 'Aromatic basmati rice cooked with tender chicken and traditional spices', 'Main Course', 15.99, 'https://images.unsplash.com/photo-1563379091339-03246963d96c?w=800&h=600&fit=crop', true, true],
+        ['Samosas', 'Crispy pastry filled with spiced potatoes and peas', 'Appetizers', 6.99, 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&h=600&fit=crop', true, true],
+        ['Gulab Jamun', 'Soft milk dumplings in sweet cardamom syrup', 'Desserts', 4.99, 'https://images.unsplash.com/photo-1571167530149-c72f2b3d9f95?w=800&h=600&fit=crop', true, true],
+        ['Masala Chai', 'Traditional spiced tea with milk and aromatic spices', 'Beverages', 3.99, 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=800&h=600&fit=crop', true, true],
+        ['Pakoras', 'Crispy fritters made with vegetables and chickpea flour', 'Snacks', 7.99, 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=800&h=600&fit=crop', true, true]
+      ];
+      
+      for (const item of sampleItems) {
+        await connection.query(
+          'INSERT INTO mees_food_items (name, description, category, price, image_url, is_available, is_sample) VALUES (?, ?, ?, ?, ?, ?, ?)',
+          item
+        );
+      }
+      console.log('Sample food items inserted');
+    }
+    
+  } catch (error) {
+    console.log('Sample data insertion error:', error.message);
   }
 }
 

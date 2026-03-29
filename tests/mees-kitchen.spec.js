@@ -28,7 +28,7 @@ test.describe('MEE\'S KITCHEN - Complete Testing Suite', () => {
     await expect(page.locator('.nav-menu')).toHaveClass(/active/);
     
     // Test menu auto-close on navigation
-    await page.locator('a[href="#menu"]').click();
+    await page.locator('nav .nav-menu a[href="#menu"]').first().click();
     await page.waitForTimeout(1000);
     await expect(page.locator('.nav-menu')).not.toHaveClass(/active/);
   });

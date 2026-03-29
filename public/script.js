@@ -1,3 +1,6 @@
+// API Base URL - Update this with your Render backend URL
+const API_BASE_URL = 'https://mees-kitchen-backend.onrender.com';
+
 // Global variables
 let foodItems = [];
 let categories = [];
@@ -41,7 +44,7 @@ function setupEventListeners() {
 // Load food items from API
 async function loadFoodItems() {
     try {
-        const response = await fetch('/api/food-items');
+        const response = await fetch(`${API_BASE_URL}/api/food-items`);
         foodItems = await response.json();
         displayFoodItems(foodItems);
     } catch (error) {
@@ -53,7 +56,7 @@ async function loadFoodItems() {
 // Load categories from API
 async function loadCategories() {
     try {
-        const response = await fetch('/api/categories');
+        const response = await fetch(`${API_BASE_URL}/api/categories`);
         categories = await response.json();
         updateCategoryFilters();
         updateCategorySelect();
@@ -138,7 +141,7 @@ function updateCategorySelect() {
 // Load contact information and update display
 async function loadContactInfo() {
     try {
-        const response = await fetch('/api/contact-info');
+        const response = await fetch(`${API_BASE_URL}/api/contact-info`);
         if (response.ok) {
             const contactInfo = await response.json();
             updateContactDisplay(contactInfo);

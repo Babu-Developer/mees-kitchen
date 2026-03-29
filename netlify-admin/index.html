@@ -6,7 +6,7 @@
     <title>MEE'S KITCHEN - Admin Dashboard</title>
     <link rel="stylesheet" href="admin-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="admin-container">
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="submit-btn" id="submitItemBtn">
+                            <button type="submit" class="submit-btn" id="submitItemBtn" onclick="handleAddFood(event)">
                                 <i class="fas fa-save"></i> Add Food Item
                             </button>
                             <button type="button" class="submit-btn secondary" id="cancelEditBtn" style="display: none;">
@@ -98,7 +98,7 @@
                                 <textarea id="categoryDescription" name="description" rows="3" placeholder="Describe this category..."></textarea>
                             </div>
 
-                            <button type="submit" class="submit-btn secondary" id="submitCategoryBtn">
+                            <button type="submit" class="submit-btn secondary" id="submitCategoryBtn" onclick="handleAddCategory(event)">
                                 <i class="fas fa-plus"></i> Add Category
                             </button>
                             <button type="button" class="submit-btn" id="cancelCategoryEditBtn" style="display: none;">
@@ -197,7 +197,7 @@
                                 <input type="url" id="twitterUrl" name="twitter_url" placeholder="https://twitter.com/yourpage">
                             </div>
                             
-                            <button type="submit" class="submit-btn">
+                            <button type="submit" class="submit-btn" onclick="handleContactInfo(event)">
                                 <i class="fas fa-save"></i> Update Contact & Social Media
                             </button>
                         </form>

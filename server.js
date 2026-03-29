@@ -144,6 +144,9 @@ const sampleCategories = [
 
 const pool = mysql.createPool(dbConfig);
 
+// Database connection status
+let isDatabaseConnected = false;
+
 // Test database connection and initialize
 async function testDatabaseConnection() {
   try {

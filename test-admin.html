@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Test</title>
+</head>
+<body>
+    <h1>Testing Admin API Calls</h1>
+    <div id="results"></div>
+    
+    <script>
+        const API_BASE_URL = 'https://mees-kitchen-backend.onrender.com';
+        
+        async function testAPIs() {
+            const results = document.getElementById('results');
+            
+            try {
+                // Test categories
+                console.log('Testing categories API...');
+                const categoriesResponse = await fetch(`${API_BASE_URL}/api/categories`);
+                const categories = await categoriesResponse.json();
+                results.innerHTML += `<p>✅ Categories API: ${categories.length} items loaded</p>`;
+                
+                // Test food items
+                console.log('Testing food items API...');
+                const foodResponse = await fetch(`${API_BASE_URL}/api/food-items`);
+                const foodItems = await foodResponse.json();
+                results.innerHTML += `<p>✅ Food Items API: ${foodItems.length} items loaded</p>`;
+                
+                // Test contact info
+                console.log('Testing contact info API...');
+                const contactResponse = await fetch(`${API_BASE_URL}/api/contact-info`);
+                const contactInfo = await contactResponse.json();
+                results.innerHTML += `<p>✅ Contact Info API: Phone = ${contactInfo.phone}</p>`;
+                
+                results.innerHTML += `<p><strong>🎉 ALL APIs WORKING CORRECTLY!</strong></p>`;
+                
+            } catch (error) {
+                results.innerHTML += `<p>❌ Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Run test when page loads
+        testAPIs();
+    </script>
+</body>
+</html>

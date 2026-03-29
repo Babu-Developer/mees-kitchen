@@ -1,7 +1,7 @@
 # Page snapshot
 
 ```yaml
-- generic [active] [ref=e1]:
+- generic [ref=e1]:
   - banner [ref=e2]:
     - navigation [ref=e3]:
       - generic [ref=e4]:
@@ -13,7 +13,7 @@
             - link "Home" [ref=e10] [cursor=pointer]:
               - /url: "#home"
           - listitem [ref=e11]:
-            - link "Menu" [ref=e12] [cursor=pointer]:
+            - link "Menu" [active] [ref=e12] [cursor=pointer]:
               - /url: "#menu"
           - listitem [ref=e13]:
             - link "About" [ref=e14] [cursor=pointer]:
@@ -21,96 +21,141 @@
           - listitem [ref=e15]:
             - link "Contact" [ref=e16] [cursor=pointer]:
               - /url: "#contact"
-  - generic [ref=e17]:
-    - generic [ref=e18]:
-      - heading "Welcome to MEE'S KITCHEN" [level=1] [ref=e19]
-      - paragraph [ref=e20]: Experience the taste of authentic homemade food prepared with love and fresh ingredients
-      - link "Explore Our Menu" [ref=e21] [cursor=pointer]:
+  - generic [ref=e21]:
+    - generic [ref=e22]:
+      - heading "Welcome to MEE'S KITCHEN" [level=1] [ref=e23]
+      - paragraph [ref=e24]: Experience the taste of authentic homemade food prepared with love and fresh ingredients
+      - link "Explore Our Menu" [ref=e25] [cursor=pointer]:
         - /url: "#menu"
-    - img "Delicious Food" [ref=e23]
-  - generic [ref=e25]:
-    - heading "Our Delicious Menu" [level=2] [ref=e26]
-    - button "All Items" [ref=e28] [cursor=pointer]
-  - generic [ref=e31]:
-    - generic [ref=e32]:
-      - heading "About MEE'S KITCHEN" [level=2] [ref=e33]
-      - paragraph [ref=e34]: At MEE'S KITCHEN, we believe that great food brings people together. Our passion for cooking started in our family kitchen, where traditional recipes were passed down through generations.
-      - paragraph [ref=e35]: We use only the freshest ingredients and time-honored cooking techniques to create dishes that not only taste amazing but also tell a story of love, tradition, and culinary excellence.
-      - generic [ref=e36]:
-        - generic [ref=e37]:
-          - generic [ref=e38]: 
-          - generic [ref=e39]: Fresh Ingredients
-        - generic [ref=e40]:
-          - generic [ref=e41]: 
-          - generic [ref=e42]: Made with Love
-        - generic [ref=e43]:
-          - generic [ref=e44]: 
-          - generic [ref=e45]: Quick Service
-    - img "Kitchen" [ref=e47]
-  - generic [ref=e49]:
-    - heading "Get In Touch" [level=2] [ref=e50]
-    - generic [ref=e51]:
-      - generic [ref=e52]:
-        - generic [ref=e53]:
-          - generic [ref=e54]: 
-          - generic [ref=e55]:
-            - heading "Phone" [level=3] [ref=e56]
-            - paragraph [ref=e57]: +1 (555) 123-4567
+    - img "Delicious Food" [ref=e27]
+  - generic [ref=e29]:
+    - heading "Our Delicious Menu" [level=2] [ref=e30]
+    - generic [ref=e31]:
+      - button "All Items" [ref=e32] [cursor=pointer]
+      - button "Appetizers" [ref=e33] [cursor=pointer]
+      - button "Main Course" [ref=e34] [cursor=pointer]
+      - button "Desserts" [ref=e35] [cursor=pointer]
+      - button "Beverages" [ref=e36] [cursor=pointer]
+      - button "Snacks" [ref=e37] [cursor=pointer]
+      - button "Specials" [ref=e38] [cursor=pointer]
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - img "Chicken Biryani" [ref=e41]
+        - generic [ref=e42]:
+          - heading "Chicken Biryani" [level=3] [ref=e43]
+          - paragraph [ref=e44]: Aromatic basmati rice cooked with tender chicken and traditional spices
+          - generic [ref=e45]:
+            - generic [ref=e46]: ₹299.00
+            - generic [ref=e47]: Main Course
+      - generic [ref=e48]:
+        - img "Samosas" [ref=e49]
+        - generic [ref=e50]:
+          - heading "Samosas" [level=3] [ref=e51]
+          - paragraph [ref=e52]: Crispy pastry filled with spiced potatoes and peas
+          - generic [ref=e53]:
+            - generic [ref=e54]: ₹149.00
+            - generic [ref=e55]: Appetizers
+      - generic [ref=e56]:
+        - img "Gulab Jamun" [ref=e57]
         - generic [ref=e58]:
-          - generic [ref=e59]: 
-          - generic [ref=e60]:
-            - heading "Email" [level=3] [ref=e61]
-            - paragraph [ref=e62]: hello@meeskitchen.com
-        - generic [ref=e63]:
-          - generic [ref=e64]: 
-          - generic [ref=e65]:
-            - heading "Location" [level=3] [ref=e66]
-            - paragraph [ref=e67]: 123 Food Street, Flavor City
-        - generic [ref=e68]:
-          - generic [ref=e69]: 
-          - generic [ref=e70]:
-            - heading "Hours" [level=3] [ref=e71]
-            - paragraph [ref=e72]: "Mon-Sun: 9:00 AM - 9:00 PM"
-      - generic [ref=e74]:
-        - textbox "Your Name" [ref=e75]
-        - textbox "Your Email" [ref=e76]
-        - textbox "Your Message" [ref=e77]
-        - button "Send Message" [ref=e78] [cursor=pointer]
-  - contentinfo [ref=e79]:
-    - generic [ref=e80]:
-      - generic [ref=e81]:
+          - heading "Gulab Jamun" [level=3] [ref=e59]
+          - paragraph [ref=e60]: Soft milk dumplings in sweet cardamom syrup
+          - generic [ref=e61]:
+            - generic [ref=e62]: ₹99.00
+            - generic [ref=e63]: Desserts
+      - generic [ref=e64]:
+        - img "Masala Chai" [ref=e65]
+        - generic [ref=e66]:
+          - heading "Masala Chai" [level=3] [ref=e67]
+          - paragraph [ref=e68]: Traditional spiced tea with milk and aromatic spices
+          - generic [ref=e69]:
+            - generic [ref=e70]: ₹79.00
+            - generic [ref=e71]: Beverages
+      - generic [ref=e72]:
+        - img "Butter Chicken" [ref=e73]
+        - generic [ref=e74]:
+          - heading "Butter Chicken" [level=3] [ref=e75]
+          - paragraph [ref=e76]: Creamy tomato-based curry with tender chicken pieces
+          - generic [ref=e77]:
+            - generic [ref=e78]: ₹329.00
+            - generic [ref=e79]: Main Course
+      - generic [ref=e80]:
+        - img "Pakoras" [ref=e81]
         - generic [ref=e82]:
-          - heading "MEE'S KITCHEN" [level=3] [ref=e83]
-          - paragraph [ref=e84]: Bringing you the finest homemade food with authentic flavors and fresh ingredients.
-        - generic [ref=e85]:
-          - heading "Quick Links" [level=3] [ref=e86]
-          - list [ref=e87]:
-            - listitem [ref=e88]:
-              - link "Home" [ref=e89] [cursor=pointer]:
+          - heading "Pakoras" [level=3] [ref=e83]
+          - paragraph [ref=e84]: Crispy fritters made with vegetables and chickpea flour
+          - generic [ref=e85]:
+            - generic [ref=e86]: ₹159.00
+            - generic [ref=e87]: Snacks
+  - generic [ref=e90]:
+    - generic [ref=e91]:
+      - heading "About MEE'S KITCHEN" [level=2] [ref=e92]
+      - paragraph [ref=e93]: At MEE'S KITCHEN, we believe that great food brings people together. Our passion for cooking started in our family kitchen, where traditional recipes were passed down through generations.
+      - paragraph [ref=e94]: We use only the freshest ingredients and time-honored cooking techniques to create dishes that not only taste amazing but also tell a story of love, tradition, and culinary excellence.
+      - generic [ref=e95]:
+        - generic [ref=e96]:
+          - generic [ref=e97]: 
+          - generic [ref=e98]: Fresh Ingredients
+        - generic [ref=e99]:
+          - generic [ref=e100]: 
+          - generic [ref=e101]: Made with Love
+        - generic [ref=e102]:
+          - generic [ref=e103]: 
+          - generic [ref=e104]: Quick Service
+    - img "Kitchen" [ref=e106]
+  - generic [ref=e108]:
+    - heading "Get In Touch" [level=2] [ref=e109]
+    - generic [ref=e110]:
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - generic [ref=e113]: 
+          - generic [ref=e114]:
+            - heading "Phone" [level=3] [ref=e115]
+            - paragraph [ref=e116]: +1 (555) 123-4567
+        - generic [ref=e117]:
+          - generic [ref=e118]: 
+          - generic [ref=e119]:
+            - heading "Email" [level=3] [ref=e120]
+            - paragraph [ref=e121]: hello@meeskitchen.com
+        - generic [ref=e122]:
+          - generic [ref=e123]: 
+          - generic [ref=e124]:
+            - heading "Location" [level=3] [ref=e125]
+            - paragraph [ref=e126]: 123 Food Street, Flavor City
+        - generic [ref=e127]:
+          - generic [ref=e128]: 
+          - generic [ref=e129]:
+            - heading "Hours" [level=3] [ref=e130]
+            - paragraph [ref=e131]: "Mon-Sun: 9:00 AM - 9:00 PM"
+      - generic [ref=e133]:
+        - textbox "Your Name" [ref=e134]
+        - textbox "Your Email" [ref=e135]
+        - textbox "Your Message" [ref=e136]
+        - button "Send Message" [ref=e137] [cursor=pointer]
+  - contentinfo [ref=e138]:
+    - generic [ref=e139]:
+      - generic [ref=e140]:
+        - generic [ref=e141]:
+          - heading "MEE'S KITCHEN" [level=3] [ref=e142]
+          - paragraph [ref=e143]: Bringing you the finest homemade food with authentic flavors and fresh ingredients.
+        - generic [ref=e144]:
+          - heading "Quick Links" [level=3] [ref=e145]
+          - list [ref=e146]:
+            - listitem [ref=e147]:
+              - link "Home" [ref=e148] [cursor=pointer]:
                 - /url: "#home"
-            - listitem [ref=e90]:
-              - link "Menu" [ref=e91] [cursor=pointer]:
+            - listitem [ref=e149]:
+              - link "Menu" [ref=e150] [cursor=pointer]:
                 - /url: "#menu"
-            - listitem [ref=e92]:
-              - link "About" [ref=e93] [cursor=pointer]:
+            - listitem [ref=e151]:
+              - link "About" [ref=e152] [cursor=pointer]:
                 - /url: "#about"
-            - listitem [ref=e94]:
-              - link "Contact" [ref=e95] [cursor=pointer]:
+            - listitem [ref=e153]:
+              - link "Contact" [ref=e154] [cursor=pointer]:
                 - /url: "#contact"
-            - listitem [ref=e96]:
-              - link "Admin Portal" [ref=e97] [cursor=pointer]:
+            - listitem [ref=e155]:
+              - link "Admin Portal" [ref=e156] [cursor=pointer]:
                 - /url: /admin
-        - generic [ref=e98]:
-          - heading "Follow Us" [level=3] [ref=e99]
-          - generic [ref=e100]:
-            - link "" [ref=e101] [cursor=pointer]:
-              - /url: "#"
-              - generic [ref=e102]: 
-            - link "" [ref=e103] [cursor=pointer]:
-              - /url: "#"
-              - generic [ref=e104]: 
-            - link "" [ref=e105] [cursor=pointer]:
-              - /url: "#"
-              - generic [ref=e106]: 
-      - paragraph [ref=e108]: © 2024 MEE'S KITCHEN. All rights reserved.
+        - text:   
+      - paragraph [ref=e158]: © 2024 MEE'S KITCHEN. All rights reserved.
 ```
